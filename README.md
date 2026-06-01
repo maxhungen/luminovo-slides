@@ -1,4 +1,6 @@
-# Frontend Slides
+# Luminovo Slides
+
+> Luminovo's internal slide generator, maintained by **Max Hungenbach**. Based on [frontend-slides](https://github.com/zarazhangrui/frontend-slides) by Zara Zhang (MIT License).
 
 A coding-agent skill for creating stunning HTML presentations — from scratch or by converting PowerPoint files. It is packaged as a Claude Code plugin, and the core `SKILL.md` can also be read by other coding agents with filesystem and shell access.
 
