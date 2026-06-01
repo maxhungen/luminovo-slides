@@ -1,6 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "frontend-slides",
+  "name": "luminovo-slides",
   "description": "Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files.",
   "owner": {
     "name": "maxhungen",
@@ -8,9 +8,9 @@
   },
   "plugins": [
     {
-      "name": "frontend-slides",
+      "name": "luminovo-slides",
       "description": "Zero-dependency HTML presentation generator with safe presets, bold template-library styles, PPT conversion, and anti-AI-slop design philosophy.",
-      "source": "./plugins/frontend-slides",
+      "source": "./plugins/luminovo-slides",
       "category": "productivity",
       "tags": ["presentations", "slides", "html", "design", "powerpoint", "templates"]
     }
