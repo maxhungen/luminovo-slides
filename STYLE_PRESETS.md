@@ -1,8 +1,65 @@
 # Style Presets Reference
 
-Curated visual styles for Frontend Slides. Each preset is inspired by real design references — no generic "AI slop" aesthetics. **Abstract shapes only — no illustrations.**
+Curated visual styles for Luminovo Slides. Each preset is inspired by real design references — no generic "AI slop" aesthetics. **Abstract shapes only — no illustrations.**
 
 **Viewport CSS:** For mandatory base styles, see [viewport-base.css](viewport-base.css). Include in every presentation.
+
+---
+
+## Luminovo Brand (Default)
+
+**Vibe:** Clean, professional, enterprise B2B SaaS — spacious, confident, trustworthy. This is Luminovo's official corporate identity and the **default look for every deck** unless the user explicitly asks for a different style.
+
+**Layout:** Generous whitespace, strong visual hierarchy, subtle gradients and soft shadows — never harsh borders. Content slides on near-white (`#FCFCFE` / `#F5F8FF`); title and section-divider slides on the deep LumiBlue gradient with white text and a LumiOrange CTA.
+
+**Typography:**
+- Display: `Inter Display` (Light 300) — large, airy headings
+- Body: `Inter` (Regular 400)
+- Scale (authored at 1920×1080): title ~120px, section/H2 ~72px, body ~30px, line-height 120% for headings / 140–160% for body
+
+**Colors:**
+```css
+:root {
+    /* LumiBlue */
+    --lumi-blue-50: #F5F8FF;
+    --lumi-blue-300: #D0D7F8;
+    --lumi-blue-600: #5767EC;   /* primary */
+    --lumi-blue-900: #11152F;
+    /* LumiOrange (accent) */
+    --lumi-orange-300: #F8B689;
+    --lumi-orange-600: #F59756;  /* accent / CTA */
+    /* Neutrals — LumiGrey */
+    --lumi-grey-50: #FCFCFE;
+    --lumi-grey-100: #F3F4F6;
+    --lumi-grey-600: #858CA0;    /* body text */
+    --lumi-grey-900: #434650;
+    --white: #FFFFFF;
+    /* Semantic */
+    --success: #32D583;
+    --warning: #FDB023;
+    --error: #F97066;
+    /* Hero / section-divider gradient */
+    --hero-gradient: linear-gradient(180deg, #11152F 0%, #23295E 50%, #3D48A5 100%);
+
+    /* Mapped to the html-template.md :root variables */
+    --bg-primary: #FCFCFE;
+    --bg-secondary: #F5F8FF;
+    --text-primary: #11152F;
+    --text-secondary: #858CA0;
+    --accent: #5767EC;
+    --accent-2: #F59756;
+}
+```
+
+**Signature Elements:**
+- 8px spacing scale: `8 · 16 · 24 · 32 · 48 · 64 · 80`
+- Soft cards: `border-radius: 16px; box-shadow: 0 4px 24px rgba(17, 21, 47, 0.08)` (hover `0 8px 32px rgba(17, 21, 47, 0.12)`)
+- Buttons: primary `#5767EC`, secondary/CTA `#F59756`; `border-radius: 8px; padding: 12px 24px; transition: 300ms ease`
+- Deep LumiBlue gradient on title/section slides; white headings, `#DDE1FB` subtext, LumiOrange CTA
+- Outlined line icons (Core Line / Streamline), 24–48px
+- Smooth `300ms ease` transitions everywhere; WCAG AAA contrast; always generous negative space
+
+**Brand note:** This is the **one preset that deliberately uses Inter and a blue/indigo primary** — because it is Luminovo's registered corporate identity, not a lazy default. Do not substitute brand fonts or colors on Luminovo-branded decks. (See the exception in "DO NOT USE" below.)
 
 ---
 
@@ -302,6 +359,7 @@ Curated visual styles for Frontend Slides. Each preset is inspired by real desig
 
 | Preset | Display Font | Body Font | Source |
 |--------|--------------|-----------|--------|
+| **Luminovo Brand (default)** | Inter Display (300) | Inter (400) | Google |
 | Bold Signal | Archivo Black | Space Grotesk | Google |
 | Electric Studio | Manrope | Manrope | Google |
 | Creative Voltage | Syne | Space Mono | Google |
@@ -324,6 +382,8 @@ Curated visual styles for Frontend Slides. Each preset is inspired by real desig
 **Layouts:** Everything centered, generic hero sections, identical card grids
 
 **Decorations:** Realistic illustrations, gratuitous glassmorphism, drop shadows without purpose
+
+> **Exception — Luminovo Brand:** the Luminovo Brand preset above intentionally uses **Inter Display** and **LumiBlue (`#5767EC`)** as Luminovo's official corporate identity. These "do not use" rules apply to every *other* design — they do not override the brand on Luminovo-branded decks.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: frontend-slides
-description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.
+description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices. Customized for Luminovo: defaults to the Luminovo Brand design system (LumiBlue/LumiOrange, Inter Display, 8px spacing scale) unless the user explicitly asks for a different look.
 ---
 
 # Frontend Slides
@@ -34,6 +34,12 @@ Avoid generic AI-generated aesthetics:
 - Cookie-cutter design that lacks context-specific character
 
 Interpret creatively and make unexpected choices that feel genuinely designed for the context. Vary between light and dark themes, different fonts, different aesthetics. You still tend to converge on common choices (Space Grotesk, for example) across generations. Avoid this: it is critical that you think outside the box!
+
+### Luminovo Brand (the default identity)
+
+This is Luminovo's internal slide generator, so the **Luminovo Brand** preset is the default look for every deck unless the user explicitly asks for a different style or picks another preview in Phase 2. See [STYLE_PRESETS.md](STYLE_PRESETS.md) for the full token set.
+
+The Luminovo Brand is the **one sanctioned exception** to the "avoid Inter / avoid indigo" rules above: it intentionally uses **Inter Display** and **LumiBlue (`#5767EC`)** because that is Luminovo's registered corporate identity. Used as specified — Light-weight Inter Display headings, generous whitespace, soft shadows, LumiOrange accents, deep LumiBlue gradients for section dividers — it reads as deliberate, enterprise-grade design, not "AI slop." Do not substitute the brand fonts or colors on Luminovo-branded decks.
 
 ## Fixed Stage Rules
 
@@ -152,7 +158,8 @@ Read [STYLE_PRESETS.md](STYLE_PRESETS.md) for safe preset candidates. If [bold-t
 
 **Preview mix rules:**
 
-- Generate 3 previews by default: 1 safe preset from `STYLE_PRESETS.md`, at least 1 bold template from `bold-template-pack/selection-index.json`, and 1 wildcard.
+- **Luminovo Brand is the default.** The safe-preset slot is always the **Luminovo Brand** preset from `STYLE_PRESETS.md`, and it is the recommended choice you present first (Style A). The other two slots still offer contrast so the user can explore — but if the user gives no style steer, has an internal/corporate/customer-facing context, or just says "make it on-brand," generate the deck in Luminovo Brand without requiring them to pick.
+- Generate 3 previews by default: Style A = Luminovo Brand (the default), at least 1 bold template from `bold-template-pack/selection-index.json`, and 1 wildcard.
 - The wildcard may be either a second bold template or a self-generated custom design. Choose whichever creates the strongest, most useful contrast for the user's occasion, audience, mood, and content.
 - Do not force every expressive option to come from the template library. If the brief has a sharper, more specific design opportunity than the available templates, use the wildcard slot to design freely.
 - For conservative or high-stakes decks, make the safe preset especially restrained; choose a calm, higher-formality bold template; make the wildcard either another restrained template or a custom design that feels authoritative rather than decorative.

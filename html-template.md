@@ -12,35 +12,44 @@ Reference architecture for generating slide presentations. Every presentation fo
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presentation Title</title>
 
-    <!-- Fonts: use Fontshare or Google Fonts — never system fonts -->
-    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=...">
+    <!-- Fonts: use Fontshare or Google Fonts — never system fonts.
+         Default = Luminovo Brand (Inter Display). Swap this link if another preset is chosen. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Inter+Tight:wght@300;400;500&display=swap">
 
     <style>
         /* ===========================================
            CSS CUSTOM PROPERTIES (THEME)
-           Change these to change the whole look
+           Default = Luminovo Brand. Change these to
+           change the whole look (see STYLE_PRESETS.md).
            =========================================== */
         :root {
-            /* Colors — from chosen style preset */
-            --bg-primary: #0a0f1c;
-            --bg-secondary: #111827;
-            --text-primary: #ffffff;
-            --text-secondary: #9ca3af;
-            --accent: #00ffcc;
-            --accent-glow: rgba(0, 255, 204, 0.3);
+            /* Colors — Luminovo Brand (LumiBlue / LumiOrange / LumiGrey) */
+            --bg-primary: #FCFCFE;
+            --bg-secondary: #F5F8FF;
+            --text-primary: #11152F;
+            --text-secondary: #858CA0;
+            --accent: #5767EC;            /* LumiBlue 600 — primary */
+            --accent-2: #F59756;          /* LumiOrange 600 — CTA */
+            --hero-gradient: linear-gradient(180deg, #11152F 0%, #23295E 50%, #3D48A5 100%);
 
-            /* Typography — authored at 1920×1080 stage size */
-            --font-display: 'Clash Display', sans-serif;
-            --font-body: 'Satoshi', sans-serif;
-            --title-size: 112px;
+            /* Typography — Inter Display, authored at 1920×1080 stage size */
+            --font-display: 'Inter Tight', 'Inter', sans-serif;  /* Inter Display */
+            --font-body: 'Inter', sans-serif;
+            --title-size: 120px;          /* Light (300) */
             --subtitle-size: 34px;
-            --body-size: 28px;
+            --body-size: 30px;
 
-            /* Spacing — authored at 1920×1080 stage size */
-            --slide-padding: 72px;
+            /* Spacing — Luminovo 8px scale (8·16·24·32·48·64·80) */
+            --slide-padding: 80px;
             --content-gap: 32px;
 
-            /* Animation */
+            /* Surfaces — soft shadows, no harsh borders */
+            --card-radius: 16px;
+            --card-shadow: 0 4px 24px rgba(17, 21, 47, 0.08);
+            --card-shadow-hover: 0 8px 32px rgba(17, 21, 47, 0.12);
+
+            /* Animation — 300ms ease per brand */
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             --duration-normal: 0.6s;
         }
