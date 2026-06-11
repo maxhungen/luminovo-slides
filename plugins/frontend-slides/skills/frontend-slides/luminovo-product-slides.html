@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luminovo — Produkte & Add-ons</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== LUMINOVO HOUSE STYLE ===== */
+:root{
+  --navy:#11152F;--navy-2:#23295E;--indigo:#3D48A5;--blue:#5767EC;--blue-300:#D0D7F8;--blue-50:#F5F8FF;
+  --orange:#F59756;--orange-300:#F8B689;--green:#32D583;--yellow:#FDB023;--red:#F97066;
+  --grey-50:#FCFCFE;--grey-100:#F3F4F6;--grey-600:#858CA0;--grey-900:#434650;--white:#fff;
+  --font:"Inter","Helvetica Neue",sans-serif;
+  --title-size:clamp(1.9rem,5.2vw,4.2rem);--h2-size:clamp(1.35rem,3.4vw,2.6rem);--h3-size:clamp(1rem,2.1vw,1.55rem);
+  --body-size:clamp(0.78rem,1.15vw,1.05rem);--small-size:clamp(0.62rem,0.92vw,0.85rem);--mega-size:clamp(2.4rem,7vw,5.5rem);
+  --slide-padding:clamp(1.4rem,4vw,4rem);--content-gap:clamp(0.6rem,1.8vw,1.6rem);--element-gap:clamp(0.3rem,1vw,0.9rem);
+  --ease:cubic-bezier(0.16,1,0.3,1);--dur:0.7s;--shadow:0 4px 24px rgba(17,21,47,.08);--shadow-lg:0 12px 40px rgba(17,21,47,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow-x:hidden}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--navy);color:var(--grey-900);font-weight:400;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-weight:300;letter-spacing:-.02em;line-height:1.1;color:var(--navy)}
+h1{font-size:var(--title-size)} h2{font-size:var(--h2-size)} h3{font-size:var(--h3-size)}
+.slide{width:100vw;height:100vh;height:100dvh;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column;position:relative}
+.slide-content{flex:1;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow:hidden;padding:var(--slide-padding)}
+.slide.dark{background:linear-gradient(135deg,#0d1129 0%,var(--navy) 38%,var(--navy-2) 78%,var(--indigo) 130%);color:#fff}
+.slide.dark h1,.slide.dark h2,.slide.dark h3{color:#fff}
+.slide.light{background:var(--grey-50)} .slide.tint{background:var(--blue-50)}
+.brandbar{position:absolute;top:clamp(1rem,3vh,2.2rem);left:var(--slide-padding);display:flex;align-items:center;gap:.5rem;font-size:clamp(.95rem,1.8vw,1.35rem);font-weight:600;letter-spacing:-.02em;color:#fff;z-index:3}
+.slide.light .brandbar,.slide.tint .brandbar{color:var(--navy)}
+.brandbar .ring{width:1.2em;height:1.2em;flex:none;color:var(--blue)}
+.page-num{position:absolute;bottom:clamp(.8rem,2vh,1.6rem);right:clamp(1rem,3vw,2.2rem);font-size:var(--small-size);color:var(--grey-600);z-index:3}
+.slide.dark .page-num{color:rgba(255,255,255,.45)}
+.rings{position:absolute;right:-12vw;top:50%;transform:translateY(-50%);width:80vh;height:80vh;pointer-events:none;opacity:.5}
+.kicker{font-size:var(--small-size);font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.slide.dark .kicker{color:var(--orange-300)}
+.lead{font-size:var(--body-size);line-height:1.55;color:var(--grey-600);max-width:64ch} .slide.dark .lead{color:var(--blue-300)}
+.shead{display:flex;flex-direction:column;gap:.5rem;margin-bottom:var(--content-gap)}
+.badge{font-size:var(--small-size);font-weight:600;padding:.35em .85em;border-radius:999px}
+.badge.cat{background:var(--blue-50);color:var(--blue)} .slide.dark .badge.cat{background:rgba(255,255,255,.1);color:var(--blue-300)}
+.badge.stat{background:var(--orange);color:#fff}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(.55rem,1.5vw,1.2rem);width:100%;max-width:1150px}
+.fcard{background:#fff;border-radius:14px;padding:clamp(.8rem,1.6vw,1.35rem);box-shadow:var(--shadow);display:flex;gap:.75rem;align-items:flex-start;border:1px solid rgba(17,21,47,.04)}
+.fcard .ic{flex:none;width:clamp(1.7rem,2.7vw,2.3rem);height:clamp(1.7rem,2.7vw,2.3rem);border-radius:8px;background:var(--blue-50);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95em}
+.fcard h4{font-size:var(--body-size);font-weight:600;color:var(--navy);margin-bottom:.15em;letter-spacing:-.01em}
+.fcard p{font-size:var(--small-size);line-height:1.45;color:var(--grey-600)}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--blue);width:0;z-index:9001;transition:width .25s ease}
+.nav-dots{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:8000;display:flex;flex-direction:column;gap:8px}
+.nav-dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(135,140,160,.4);cursor:pointer;padding:0;transition:all .25s ease}
+.nav-dots button.active{background:var(--blue);transform:scale(1.5)}
+@media (max-width:760px){.nav-dots{display:none}}
+.lang-toggle{position:fixed;top:16px;right:16px;z-index:9000;display:flex;gap:2px;background:rgba(17,21,47,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:3px}
+.lang-toggle button{border:none;background:transparent;color:rgba(255,255,255,.78);font-family:var(--font);font-weight:600;font-size:.78rem;letter-spacing:.04em;padding:5px 13px;border-radius:999px;cursor:pointer;transition:all .2s}
+.lang-toggle button.active{background:var(--blue);color:#fff}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.slide.visible .reveal{opacity:1;transform:translateY(0)}
+.slide.visible .reveal:nth-child(1){transition-delay:.05s}.slide.visible .reveal:nth-child(2){transition-delay:.13s}
+.slide.visible .reveal:nth-child(3){transition-delay:.21s}.slide.visible .reveal:nth-child(4){transition-delay:.29s}
+.slide.visible .reveal:nth-child(5){transition-delay:.37s}.slide.visible .reveal:nth-child(6){transition-delay:.45s}
+@media (max-height:700px){:root{--slide-padding:clamp(.8rem,3vw,2rem);--content-gap:clamp(.45rem,1.5vw,1rem);--title-size:clamp(1.5rem,4.6vw,2.8rem);--h2-size:clamp(1.15rem,3vw,1.9rem);--mega-size:clamp(2rem,6vw,4rem)}}
+@media (max-height:600px){:root{--slide-padding:clamp(.55rem,2.5vw,1.5rem);--title-size:clamp(1.25rem,4vw,2.2rem);--body-size:clamp(.68rem,1.1vw,.92rem)}.nav-dots{display:none}}
+@media (max-width:640px){:root{--title-size:clamp(1.4rem,7vw,2.6rem)}.feature-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.2s!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+<div class="lang-toggle"><button data-lang="de" class="active" onclick="setLang('de')">DE</button><button data-lang="en" onclick="setLang('en')">EN</button></div>
+<nav class="nav-dots" id="navDots"></nav>
+
+<!-- 01 · OVERVIEW (dark) -->
+<section class="slide dark">
+  <svg class="rings" viewBox="0 0 400 400" fill="none" stroke="rgba(135,150,255,.22)" stroke-width="1.2"><circle cx="200" cy="200" r="80"/><circle cx="200" cy="200" r="130"/><circle cx="200" cy="200" r="180"/></svg>
+  <div class="brandbar"><svg class="ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/></svg>luminovo</div>
+  <div class="slide-content">
+    <div class="shead">
+      <div class="kicker reveal"><span class="t" data-de="Die Plattform" data-en="The platform">Die Plattform</span></div>
+      <h2 class="reveal t" data-de="Module im Überblick" data-en="Modules at a glance">Module im Überblick</h2>
+      <p class="lead reveal t" data-de="Alle Produkte und Add-ons auf einem gemeinsamen KI-Fundament." data-en="All products and add-ons on one shared AI foundation.">Alle Produkte und Add-ons auf einem gemeinsamen KI-Fundament.</p>
+    </div>
+    <div class="feature-grid reveal" style="max-width:1200px">
+      <div class="fcard"><div class="ic">◇</div><div><h4>Quoting Intelligence</h4><p class="t" data-de="Schneller kalkulieren, mehr Aufträge gewinnen." data-en="Quote faster, win more deals.">Schneller kalkulieren, mehr Aufträge gewinnen.</p></div></div>
+      <div class="fcard"><div class="ic">▲</div><div><h4>Procurement Intelligence</h4><p class="t" data-de="Mehr Einsparungen in der Beschaffung." data-en="More savings in procurement.">Mehr Einsparungen in der Beschaffung.</p></div></div>
+      <div class="fcard"><div class="ic">◉</div><div><h4>Risk (SCRM)</h4><p class="t" data-de="Lieferketten-Risiken früh abfangen." data-en="Catch supply-chain risks early.">Lieferketten-Risiken früh abfangen.</p></div></div>
+      <div class="fcard"><div class="ic">⊞</div><div><h4>PCB Pricing</h4><p class="t" data-de="Sofortpreis und Kostenanalytik für Leiterplatten." data-en="Instant pricing and cost analytics for PCBs.">Sofortpreis und Kostenanalytik für Leiterplatten.</p></div></div>
+      <div class="fcard"><div class="ic">⬡</div><div><h4>Customer Portal</h4><p class="t" data-de="BOM-Einreichung und -Tracking für Ihre Kunden." data-en="BOM submission and tracking for your customers.">BOM-Einreichung und -Tracking für Ihre Kunden.</p></div></div>
+      <div class="fcard"><div class="ic">⚙</div><div><h4>Manufacturing</h4><p class="t" data-de="Fertigungs-Workflows und Produktionsdaten." data-en="Manufacturing workflows and production data.">Fertigungs-Workflows und Produktionsdaten.</p></div></div>
+      <div class="fcard"><div class="ic">◫</div><div><h4>Strategic Sourcing</h4><p class="t" data-de="Bedarfsbündelung und Verhandlungsworkflows." data-en="Demand bundling and negotiation workflows.">Bedarfsbündelung und Verhandlungsworkflows.</p></div></div>
+      <div class="fcard"><div class="ic">⬢</div><div><h4>Supplier (SRM)</h4><p class="t" data-de="Lieferantenmanagement an einem Ort." data-en="Supplier management in one place.">Lieferantenmanagement an einem Ort.</p></div></div>
+    </div>
+  </div>
+  <div class="page-num">01 / 10</div>
+</section>
+
+<!-- 02 · QUOTING INTELLIGENCE (light) -->
+<section class="slide light">
+  <div class="brandbar"><svg class="ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/></svg>luminovo</div>
+  <div class="slide-content">
+    <div class="shead">
+      <div class="kicker reveal"><span class="badge cat t" data-de="Kernprodukt · für EMS" data-en="Core product · for EMS">Kernprodukt · für EMS</span></div>
+      <h2 class="reveal">Quoting Intelligence</h2>
+      <p class="lead reveal t" data-de="Schneller kalkulieren und mehr Aufträge gewinnen. Aus eingehenden Anfragen werden in kürzester Zeit präzise, kalkulierte Angebote." data-en="Quote faster and win more deals. Turn incoming RFQs into accurate, costed quotes in a fraction of the time.">Schneller kalkulieren und mehr Aufträge gewinnen. Aus eingehenden Anfragen werden in kürzester Zeit präzise, kalkulierte Angebote.</p>
+      <div class="reveal" style="margin-top:.2rem"><span class="badge stat t" data-de="90% schnellere RFQ-Bearbeitung" data-en="90% faster RFQ turnaround">90% schnellere RFQ-Bearbeitung</span></div>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="fcard"><div class="ic">⤓</div><div><h4 class="t" data-de="Automatische BOM-Verarbeitung" data-en="Automated BOM processing">Automatische BOM-Verarbeitung</h4><p class="t" data-de="Stückliste rein, kalkuliertes Angebot raus, ohne manuelles Mapping." data-en="BOM in, costed quote out, no manual mapping.">Stückliste rein, kalkuliertes Angebot raus, ohne manuelles Mapping.</p></div></div>
+      <div class="fcard"><div class="ic">€</div><div><h4 class="t" data-de="Echtzeit-Preise & Verfügbarkeit" data-en="Real-time prices & availability">Echtzeit-Preise & Verfügbarkeit</h4><p class="t" data-de="Live-Daten über alle relevanten Distributoren." data-en="Live data across all relevant distributors.">Live-Daten über alle relevanten Distributoren.</p></div></div>
+      <div class="fcard"><div class="ic">∑</div><div><h4 class="t" data-de="Fertigungskosten-Kalkulation" data-en="Manufacturing cost calculation">Fertigungskosten-Kalkulation</h4><p class="t" data-de="Berechnen statt schätzen, inkl. Setup, Arbeit und Marge." data-en="Calculate instead of estimate, incl. setup, labor and margin.">Berechnen statt schätzen, inkl. Setup, Arbeit und Marge.</p></div></div>
+      <div class="fcard"><div class="ic">→</div><div><h4 class="t" data-de="Ein Workflow von Anfrage bis Angebot" data-en="One workflow from RFQ to quote">Ein Workflow von Anfrage bis Angebot</h4><p class="t" data-de="Kein Hin und Her zwischen Excel und E-Mail." data-en="No back-and-forth between Excel and email.">Kein Hin und Her zwischen Excel und E-Mail.</p></div></div>
+    </div>
+  </div>
+  <div class="page-num">02 / 10</div>
+</section>
+
+<!-- 03 · PROCUREMENT INTELLIGENCE (tint) -->
+<section class="slide tint">
+  <div class="brandbar"><svg class="ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/></svg>luminovo</div>
+  <div class="slide-content">
+    <div class="shead">
+      <div class="kicker reveal"><span class="badge cat t" data-de="Kernprodukt · für OEMs" data-en="Core product · for OEMs">Kernprodukt · für OEMs</span></div>
+      <h2 class="reveal">Procurement Intelligence</h2>
+      <p class="lead reveal t" data-de="Mehr Einsparungen in der Elektronikbeschaffung, mit Live-Marktdaten direkt auf Ihrer BOM." data-en="Maximize savings in electronics procurement, with live market data right on your BOM.">Mehr Einsparungen in der Elektronikbeschaffung, mit Live-Marktdaten direkt auf Ihrer BOM.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="fcard"><div class="ic">€</div><div><h4 class="t" data-de="Echtzeit-Lieferanten- & Marktpreisdaten" data-en="Real-time supplier & market price data">Echtzeit-Lieferanten- & Marktpreisdaten</h4><p class="t" data-de="Preise und Verfügbarkeit immer aktuell am Bauteil." data-en="Prices and availability always current, per part.">Preise und Verfügbarkeit immer aktuell am Bauteil.</p></div></div>
+      <div class="fcard"><div class="ic">↓</div><div><h4 class="t" data-de="Einsparpotenziale sichtbar" data-en="Savings opportunities, visible">Einsparpotenziale sichtbar</h4><p class="t" data-de="Konkrete Hebel für bessere Preise und Verhandlungen." data-en="Concrete levers for better prices and negotiations.">Konkrete Hebel für bessere Preise und Verhandlungen.</p></div></div>
+      <div class="fcard"><div class="ic">◫</div><div><h4 class="t" data-de="Bedarfstransparenz" data-en="Demand visibility">Bedarfstransparenz</h4><p class="t" data-de="Bündelung des Bedarfs über Projekte und Produkte hinweg." data-en="Aggregate demand across projects and products.">Bündelung des Bedarfs über Projekte und Produkte hinweg.</p></div></div>
+      <div class="fcard"><div class="ic">◇</div><div><h4 class="t" data-de="Mit BOM & Sourcing verbunden" data-en="Connected to BOM & sourcing">Mit BOM & Sourcing verbunden</h4><p class="t" data-de="Einsparungen dort, wo Beschaffungsentscheidungen fallen." data-en="Savings where procurement decisions happen.">Einsparungen dort, wo Beschaffungsentscheidungen fallen.</p></div></div>
+    </div>
+  </div>
+  <div class="page-num">03 / 10</div>
+</section>
+
+<!-- 04 · RISK (SCRM) (light) -->
+<section class="slide light">
+  <div class="brandbar"><svg class="ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/></svg>luminovo</div>
+  <div class="slide-content">
+    <div class="shead">
+      <div class="kicker reveal"><span class="badge cat">Add-on</span></div>
+      <h2 class="reveal">Risk (SCRM)</h2>
+      <p class="lead reveal t" data-de="Lieferketten-Risiken abfangen, bevor sie die Produktion treffen. Lebenszyklus, Compliance, GeoRisk und PCNs, verbunden mit der BOM." data-en="Catch supply-chain risks before they hit production. Lifecycle, compliance, GeoRisk and PCNs, connected to your BOM.">Lieferketten-Risiken abfangen, bevor sie die Produktion treffen. Lebenszyklus, Compliance, GeoRisk und PCNs, verbunden mit der BOM.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="fcard"><div class="ic">▦</div><div><h4 class="t" data-de="Bibliotheksweites Risiko-Dashboard" data-en="Library-wide risk dashboard">Bibliotheksweites Risiko-Dashboard</h4><p class="t" data-de="Lebenszyklus, Compliance und Lieferzeit auf einen Blick." data-en="Lifecycle, compliance and lead time at a glance.">Lebenszyklus, Compliance und Lieferzeit auf einen Blick.</p></div></div>
+      <div class="fcard"><div class="ic">⬡</div><div><h4 class="t" data-de="Wirkung auf Baugruppen-Ebene" data-en="Assembly-level impact">Wirkung auf Baugruppen-Ebene</h4><p class="t" data-de="Sehen, welche Produkte ein Risiko-Bauteil betrifft." data-en="See which products a risky part affects.">Sehen, welche Produkte ein Risiko-Bauteil betrifft.</p></div></div>
+      <div class="fcard"><div class="ic">◉</div><div><h4 class="t" data-de="GeoRisk & PCN-Überwachung" data-en="GeoRisk & PCN monitoring">GeoRisk & PCN-Überwachung</h4><p class="t" data-de="Tagesaktuell über die Silicon-Expert-Integration." data-en="Daily, via the Silicon Expert integration.">Tagesaktuell über die Silicon-Expert-Integration.</p></div></div>
+      <div class="fcard"><div class="ic">→</div><div><h4 class="t" data-de="Handlungsfähig, nicht nur Daten" data-en="Actionable, not just data">Handlungsfähig, nicht nur Daten</h4><p class="t" data-de="Alternativen finden und handeln, direkt in Luminovo." data-en="Find alternatives and act, right in Luminovo.">Alternativen finden und handeln, direkt in Luminovo.</p></div></div>
+    </div>
+  </div>
+  <div class="page-num">04 / 10</div>
+</section>
+
+<!-- 05 · PCB PRICING (tint) -->
+<section class="slide tint">
+  <div class="brandbar"><svg class="ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/></svg>luminovo</div>
+  <div class="slide-content">
+    <div class="shead">
+      <div class="kicker reveal"><span class="badge cat">Add-on</span></div>
+      <h2 class="reveal">PCB Pricing</h2>
+      <p class="lead reveal t" data-de="Echtzeit-Kostenanalytik für Leiterplatten. Spezifikation rein, Sofortpreis raus." data-en="Real-time cost analytics for PCBs. Spec in, instant price out.">Echtzeit-Kostenanalytik für Leiterplatten. Spezifikation rein, Sofortpreis raus.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="fcard"><div class="ic">⊞</div><div><h4 class="t" data-de="Sofortpreis aus der Spezifikation" data-en="Instant price from the spec">Sofortpreis aus der Spezifikation</h4><p class="t" data-de="Lagen, Material, Menge. Preis in Sekunden." data-en="Layers, material, quantity. Price in seconds.">Lagen, Material, Menge. Preis in Sekunden.</p></div></div>
+      <div class="fcard"><div class="ic">€</div><div><h4 class="t" data-de="Dynamische Preisdaten" data-en="Dynamic pricing data">Dynamische Preisdaten</h4><p class="t" data-de="Marktbasierte Leiterplatten-Kosten, immer aktuell." data-en="Market-based PCB costs, always current.">Marktbasierte Leiterplatten-Kosten, immer aktuell.</p></div></div>
+      <div class="fcard"><div class="ic">⇄</div><div><h4 class="t" data-de="Kosten-Benchmarking" data-en="Cost benchmarking">Kosten-Benchmarking</h4><p class="t" data-de="Angebote und Lieferanten objektiv vergleichen." data-en="Compare quotes and suppliers objectively.">Angebote und Lieferanten objektiv vergleichen.</p></div></div>
+      <div class="fcard"><div class="ic">◇</div><div><h4 class="t" data-de="Bessere Sourcing-Entscheidungen" data-en="Better sourcing decisions">Bessere Sourcing-Entscheidungen</h4><p class="t" data-de="Transparenz statt Blackbox bei der PCB-Beschaffung." data-en="Transparency instead of a black box.">Transparenz statt Blackbox bei der PCB-Beschaffung.</p></div></div>
+    </div>
+  </div>
+  <div class="page-num">05 / 10</div>
+</section>
+
+<!-- 06 · CUSTOMER PORTAL (light) -->
+<section class="slide light">
+  <div class="brandbar"><svg class="ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/></svg>luminovo</div>
+  <div class="slide-content">
+    <div class="shead">
+      <div class="kicker reveal"><span class="badge cat">Add-on</span></div>
+      <h2 class="reveal">Customer Portal</h2>
+      <p class="lead reveal t" data-de="Ein browserbasierter Zugang für Ihre Kunden, um BOMs einzureichen und zu verfolgen. Schluss mit E-Mail-Workflows." data-en="A browser-native front door for your customers to submit and track BOMs. No more email workflows.">Ein browserbasierter Zugang für Ihre Kunden, um BOMs einzureichen und zu verfolgen. Schluss mit E-Mail-Workflows.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="fcard"><div class="ic">⤒</div><div><h4 class="t" data-de="Datei-Upload & BOM-Einreichung" data-en="File upload & BOM submission">Datei-Upload & BOM-Einreichung</h4><p class="t" data-de="Kunden laden Stücklisten direkt im Browser hoch." data-en="Customers upload BOMs directly in the browser.">Kunden laden Stücklisten direkt im Browser hoch.</p></div></div>
+      <div class="fcard"><div class="ic">⟳</div><div><h4 class="t" data-de="Echtzeit-Freigabe & Status" data-en="Real-time sharing & status">Echtzeit-Freigabe & Status</h4><p class="t" data-de="Alle sehen denselben Stand, ohne Mail-Kette." data-en="Everyone sees the same state, no email chains.">Alle sehen denselben Stand, ohne Mail-Kette.</p></div></div>
+      <div class="fcard"><div class="ic">✓</div><div><h4 class="t" data-de="Ersetzt E-Mail-Abläufe" data-en="Replaces email workflows">Ersetzt E-Mail-Abläufe</h4><p class="t" data-de="Weniger Reibung, weniger Versionschaos." data-en="Less friction, less version chaos.">Weniger Reibung, weniger Versionschaos.</p></div></div>
+      <div class="fcard"><div class="ic">◈</div><div><h4 class="t" data-de="Markenkonformes Erlebnis" data-en="On-brand experience">Markenkonformes Erlebnis</h4><p class="t" data-de="Ihr Auftritt, professionell und konsistent." data-en="Your brand, professional and consistent.">Ihr Auftritt, professionell und konsistent.</p></div></div>
+    </div>
+  </div>
+  <div class="page-num">06 / 10</div>
+</section>
+
+<!-- 07 · MANUFACTURING (tint) -->
+<section class="slide tint">
+  <div class="brandbar"><svg class="ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/></svg>luminovo</div>
+  <div class="slide-content">
+    <div class="shead">
+      <div class="kicker reveal"><span class="badge cat">Add-on</span></div>
+      <h2 class="reveal">Manufacturing</h2>
+      <p class="lead reveal t" data-de="Fertigungs-Workflows und Produktionsdaten auf derselben Plattform verbunden." data-en="Manufacturing workflows and production data, connected on one platform.">Fertigungs-Workflows und Produktionsdaten auf derselben Plattform verbunden.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="fcard"><div class="ic">⚙</div><div><h4 class="t" data-de="Fertigungs-Workflows" data-en="Manufacturing workflows">Fertigungs-Workflows</h4><p class="t" data-de="Produktionsschritte strukturiert steuern." data-en="Manage production steps in a structured way.">Produktionsschritte strukturiert steuern.</p></div></div>
+      <div class="fcard"><div class="ic">▤</div><div><h4 class="t" data-de="Produktionsdaten-Integration" data-en="Production data integration">Produktionsdaten-Integration</h4><p class="t" data-de="Daten aus der Fertigung fließen zurück in die Plattform." data-en="Shop-floor data flows back into the platform.">Daten aus der Fertigung fließen zurück in die Plattform.</p></div></div>
+      <div class="fcard"><div class="ic">↗</div><div><h4 class="t" data-de="Vom Prototyp zur Serie" data-en="From prototype to series">Vom Prototyp zur Serie</h4><p class="t" data-de="Ein durchgängiger Weg statt Systembruch." data-en="One continuous path instead of system breaks.">Ein durchgängiger Weg statt Systembruch.</p></div></div>
+      <div class="fcard"><div class="ic">⇄</div><div><h4 class="t" data-de="Anbindung bestehender Systeme" data-en="Connects existing systems">Anbindung bestehender Systeme</h4><p class="t" data-de="Integration in Ihre vorhandene Fertigungslandschaft." data-en="Integrates with your existing manufacturing stack.">Integration in Ihre vorhandene Fertigungslandschaft.</p></div></div>
+    </div>
+  </div>
+  <div class="page-num">07 / 10</div>
+</section>
+
+<!-- 08 · STRATEGIC SOURCING (light) -->
+<section class="slide light">
+  <div class="brandbar"><svg class="ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/></svg>luminovo</div>
+  <div class="slide-content">
+    <div class="shead">
+      <div class="kicker reveal"><span class="badge cat">Add-on</span></div>
+      <h2 class="reveal">Strategic Sourcing</h2>
+      <p class="lead reveal t" data-de="Bedarfsbündelung und Verhandlungsworkflows für strategische Einsparungen über Projekte und Standorte hinweg." data-en="Demand bundling and negotiation workflows for strategic savings across projects and sites.">Bedarfsbündelung und Verhandlungsworkflows für strategische Einsparungen über Projekte und Standorte hinweg.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="fcard"><div class="ic">◫</div><div><h4 class="t" data-de="Bedarfsbündelung" data-en="Demand bundling">Bedarfsbündelung</h4><p class="t" data-de="Mengen über Projekte hinweg zusammenführen." data-en="Combine volumes across projects.">Mengen über Projekte hinweg zusammenführen.</p></div></div>
+      <div class="fcard"><div class="ic">⇄</div><div><h4 class="t" data-de="Verhandlungsworkflows" data-en="Negotiation workflows">Verhandlungsworkflows</h4><p class="t" data-de="Strukturierte Verhandlungen statt Ad-hoc-Mails." data-en="Structured negotiations instead of ad-hoc emails.">Strukturierte Verhandlungen statt Ad-hoc-Mails.</p></div></div>
+      <div class="fcard"><div class="ic">◇</div><div><h4 class="t" data-de="Strategische Lieferantenwahl" data-en="Strategic supplier selection">Strategische Lieferantenwahl</h4><p class="t" data-de="Entscheidungen auf Basis echter Daten." data-en="Decisions based on real data.">Entscheidungen auf Basis echter Daten.</p></div></div>
+      <div class="fcard"><div class="ic">↓</div><div><h4 class="t" data-de="Skaleneffekte heben" data-en="Capture economies of scale">Skaleneffekte heben</h4><p class="t" data-de="Bessere Konditionen durch gebündelte Nachfrage." data-en="Better terms through bundled demand.">Bessere Konditionen durch gebündelte Nachfrage.</p></div></div>
+    </div>
+  </div>
+  <div class="page-num">08 / 10</div>
+</section>
+
+<!-- 09 · SUPPLIER (SRM) (tint) -->
+<section class="slide tint">
+  <div class="brandbar"><svg class="ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/></svg>luminovo</div>
+  <div class="slide-content">
+    <div class="shead">
+      <div class="kicker reveal"><span class="badge cat">Add-on</span></div>
+      <h2 class="reveal">Supplier (SRM)</h2>
+      <p class="lead reveal t" data-de="Lieferantenmanagement mit Scorecards, Performance und Zusammenarbeit an einem Ort." data-en="Supplier management with scorecards, performance and collaboration in one place.">Lieferantenmanagement mit Scorecards, Performance und Zusammenarbeit an einem Ort.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="fcard"><div class="ic">◉</div><div><h4 class="t" data-de="Lieferanten-Scorecards" data-en="Supplier scorecards">Lieferanten-Scorecards</h4><p class="t" data-de="Leistung objektiv und vergleichbar bewerten." data-en="Rate performance objectively and comparably.">Leistung objektiv und vergleichbar bewerten.</p></div></div>
+      <div class="fcard"><div class="ic">▦</div><div><h4 class="t" data-de="Performance-Tracking" data-en="Performance tracking">Performance-Tracking</h4><p class="t" data-de="Liefertreue und Qualität im Blick behalten." data-en="Keep delivery reliability and quality in view.">Liefertreue und Qualität im Blick behalten.</p></div></div>
+      <div class="fcard"><div class="ic">⬡</div><div><h4 class="t" data-de="Zusammenarbeit" data-en="Collaboration">Zusammenarbeit</h4><p class="t" data-de="Kommunikation mit Lieferanten an einem Ort." data-en="Supplier communication in one place.">Kommunikation mit Lieferanten an einem Ort.</p></div></div>
+      <div class="fcard"><div class="ic">◇</div><div><h4 class="t" data-de="Verbunden mit Sourcing" data-en="Connected to sourcing">Verbunden mit Sourcing</h4><p class="t" data-de="Bewertung dort, wo Entscheidungen getroffen werden." data-en="Ratings where decisions are made.">Bewertung dort, wo Entscheidungen getroffen werden.</p></div></div>
+    </div>
+  </div>
+  <div class="page-num">09 / 10</div>
+</section>
+
+<!-- 10 · PLATFORM FOUNDATION (dark) -->
+<section class="slide dark">
+  <svg class="rings" viewBox="0 0 400 400" fill="none" stroke="rgba(135,150,255,.22)" stroke-width="1.2"><circle cx="200" cy="200" r="80"/><circle cx="200" cy="200" r="130"/><circle cx="200" cy="200" r="180"/></svg>
+  <div class="brandbar"><svg class="ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/></svg>luminovo</div>
+  <div class="slide-content">
+    <div class="shead">
+      <div class="kicker reveal"><span class="t" data-de="Das Fundament" data-en="The foundation">Das Fundament</span></div>
+      <h2 class="reveal t" data-de="Eine KI-gestützte Plattform unter allen Produkten" data-en="One AI-powered platform under every product">Eine KI-gestützte Plattform unter allen Produkten</h2>
+      <p class="lead reveal t" data-de="Jedes Produkt sitzt auf derselben, verbundenen Datenbasis. Dadurch sprechen alle Teile dieselbe Sprache." data-en="Every product sits on the same connected data base. So all the pieces speak the same language.">Jedes Produkt sitzt auf derselben, verbundenen Datenbasis. Dadurch sprechen alle Teile dieselbe Sprache.</p>
+    </div>
+    <div class="feature-grid reveal" style="max-width:1200px">
+      <div class="fcard"><div class="ic">▤</div><div><h4 class="t" data-de="BOM-Management & Scrubbing" data-en="BOM management & scrubbing">BOM-Management & Scrubbing</h4><p class="t" data-de="Saubere, abgeglichene Stücklisten als Grundlage." data-en="Clean, matched BOMs as the foundation.">Saubere, abgeglichene Stücklisten als Grundlage.</p></div></div>
+      <div class="fcard"><div class="ic">✦</div><div><h4 class="t" data-de="KI-gestützte Datenverarbeitung" data-en="AI-powered data processing">KI-gestützte Datenverarbeitung</h4><p class="t" data-de="Automatisches Matching und Anreicherung." data-en="Automatic matching and enrichment.">Automatisches Matching und Anreicherung.</p></div></div>
+      <div class="fcard"><div class="ic">⇄</div><div><h4 class="t" data-de="100+ Integrationen" data-en="100+ integrations">100+ Integrationen</h4><p class="t" data-de="ERP, PLM und Distributoren angebunden." data-en="ERP, PLM and distributors connected.">ERP, PLM und Distributoren angebunden.</p></div></div>
+      <div class="fcard"><div class="ic">◈</div><div><h4 class="t" data-de="Kollaboration + ElectronicsGPT" data-en="Collaboration + ElectronicsGPT">Kollaboration + ElectronicsGPT</h4><p class="t" data-de="Echtzeit-Zusammenarbeit mit KI-Assistent." data-en="Real-time collaboration with an AI assistant.">Echtzeit-Zusammenarbeit mit KI-Assistent.</p></div></div>
+    </div>
+  </div>
+  <div class="page-num">10 / 10</div>
+</section>
+
+<script>
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.t').forEach(el=>{const v=el.dataset[lang]; if(v!==undefined) el.innerHTML=v;});
+  document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+}
+const slides=[...document.querySelectorAll('.slide')];
+const dotsWrap=document.getElementById('navDots');
+const progress=document.getElementById('progress');
+let current=0;
+slides.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label','Slide '+(i+1));b.onclick=()=>s.scrollIntoView();dotsWrap.appendChild(b);});
+const dots=[...dotsWrap.children];
+const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.intersectionRatio>=0.55){e.target.classList.add('visible');current=slides.indexOf(e.target);dots.forEach((d,i)=>d.classList.toggle('active',i===current));progress.style.width=((current+1)/slides.length*100)+'%';}});},{threshold:[0,.55,1]});
+slides.forEach(s=>io.observe(s));
+addEventListener('keydown',e=>{if(['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)){e.preventDefault();slides[Math.min(current+1,slides.length-1)].scrollIntoView();}else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();slides[Math.max(current-1,0)].scrollIntoView();}});
+setLang('de');
+</script>
+</body>
+</html>
